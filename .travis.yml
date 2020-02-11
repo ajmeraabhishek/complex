@@ -1,0 +1,23 @@
+sudo: required
+services:
+  - docker
+before_install:
+  - docker build -t ajmeraabhishek/complex-client -f ./client/Dockerfile.dev ./client
+
+script:
+  - docker run -e CI=true ajmeraabhishek/complex-client npm run test -- --coverage
+
+after_success:
+  - docker build -t ajmeraabhishek/complex-client  ./client
+  - docker build -t ajmeraabhishek/complex-server  ./server
+  - docker build -t ajmeraabhishek/complex-worker  ./worker
+  - docker build -t ajmeraabhishek/complex-nginx  ./nginx
+
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  - docker push ajmeraabhishek/complex-client
+  - docker push ajmeraabhishek/complex-server
+  - docker push ajmeraabhishek/complex-worker
+  - docker push ajmeraabhishek/complex-nginx
+
+
+
