@@ -6,28 +6,28 @@
             "image": "ajmeraabhishek/complex-client",
             "hostname": "client",
             "essential": false,
-            "memory": 128
+            "memory": 100
         },
         {
             "name": "server",
             "image": "ajmeraabhishek/complex-server",
             "hostname": "api",
             "essential": false,
-            "memory": 128
+            "memory": 100
         },
         {
             "name": "worker",
             "image": "ajmeraabhishek/complex-worker",
             "hostname": "worker",
             "essential": false,
-            "memory": 128
+            "memory": 100
         },
         {
             "name": "nginx",
             "image": "ajmeraabhishek/complex-nginx",
             "hostname": "nginx",
             "essential": true,
-            "memory": 128,
+            "memory": 100,
             "portMappings": [
                 {
                     "hostPort": 80,
